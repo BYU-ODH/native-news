@@ -70,7 +70,7 @@ print('Starting data download...')
 with open('tarfiles.txt') as data_to_get:
     for counter, line in enumerate(data_to_get):
         name = line.rstrip().split('/')[-1]
-        if counter < 2:
+        if counter < 2:  # change this if you want more data
             urllib.request.urlretrieve(line, 'data/' + name)
 print('Data download complete.')
 
