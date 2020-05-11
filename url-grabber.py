@@ -6,22 +6,29 @@ Created on Mon May 11 13:51:17 2020
 @author: briancroxall
 
 A script to extract the location of all the tar files from the Chronicling
-America atom feed (https://chroniclingamerica.loc.gov/ocr/feed/).
+America atom feed (https://chroniclingamerica.loc.gov/ocr/feed/). 
+
+The firstversion of the script relied on an already downloaded copy of the atom
+file.
+
+The current version grabs the file from the CA website to ensure we are always
+working with the most up-to-date information.
 """
 
 from bs4 import BeautifulSoup
+import requests as r
 
-"""
-def make_soup(file):
-    with open(file) as xml_file:
-        soup = BeautifulSoup(xml_file, 'lxml-xml')
-        return soup
-"""
+# Download and save data
+headers1 = {'user-agent': 'Brian Croxall (brian.croxall@byu.edu)'}  # noqa: E501 identify self
+data = r.get('https://chroniclingamerica.loc.gov/ocr/feed/', headers=headers1)
+with open('chronicling-atom.txt', 'w') as data_file:
+    print(data.text, file=data_file)
 
-
+# create output file
 with open('tarfiles.txt', 'w') as file:
     pass
 
+# Counters
 counter = 0
 skip_counter = 0
 
