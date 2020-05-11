@@ -6,7 +6,7 @@ Created on Mon May 11 13:51:17 2020
 @author: briancroxall
 
 A script to extract the location of all the tar files from the Chronicling
-America atom feed (https://chroniclingamerica.loc.gov/ocr/feed/). 
+America atom feed (https://chroniclingamerica.loc.gov/ocr/feed/).
 
 The firstversion of the script relied on an already downloaded copy of the atom
 file.
@@ -69,9 +69,9 @@ the script might want to be turned off.
 print('Starting data download...')
 with open('tarfiles.txt') as data_to_get:
     for counter, line in enumerate(data_to_get):
-       name = line.rstrip().split('/')[-1] 
-       if counter < 2:
-           urllib.request.urlretrieve(line, 'data/' + name)
+        name = line.rstrip().split('/')[-1]
+        if counter < 2:
+            urllib.request.urlretrieve(line, 'data/' + name)
 print('Data download complete.')
 
 """
