@@ -25,8 +25,8 @@ import os
 with open('tarfiles.txt', 'w') as file:
     pass
 
-if not os.path.isdir('data'):
-    os.mkdir('data')
+if not os.path.isdir('bulk-data'):
+    os.mkdir('bulk-data')
 
 # Download and save data
 print('Starting index download...')
@@ -73,9 +73,9 @@ with open('tarfiles.txt') as data_to_get:
     for counter, line in enumerate(data_to_get):
         name = line.rstrip().split('/')[-1]
         if counter < 4:  # change this if you want more data
-            if not os.path.isfile(f'data/{name}'):  # check to see if file already downloaded
+            if not os.path.isfile(f'bulk-data/{name}'):  # check to see if file already downloaded
                 print(f'Downloading {name}')
-                urllib.request.urlretrieve(line, 'data/' + name)
+                urllib.request.urlretrieve(line, 'bullk-data/' + name)
             else:
                 print(f'{name} already downloaded')
                 continue
