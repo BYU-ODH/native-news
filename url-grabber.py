@@ -8,8 +8,8 @@ Created on Mon May 11 13:51:17 2020
 A script to extract the location of all the tar files from the Chronicling
 America atom feed (https://chroniclingamerica.loc.gov/ocr/feed/).
 
-The firstversion of the script relied on an already downloaded copy of the atom
-file.
+The first version of the script relied on an already downloaded copy of the
+atom file.
 
 The current version grabs the file from the CA website to ensure we are always
 working with the most up-to-date information.
@@ -40,6 +40,8 @@ print('Index download completed.\n')
 # Counters
 counter = 0
 skip_counter = 0
+
+# Extract tar URLs from downloaded data
 
 print('Extracting urls from index...')
 
