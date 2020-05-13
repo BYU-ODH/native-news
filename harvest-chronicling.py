@@ -10,7 +10,7 @@ https://chroniclingamerica.loc.gov/about/api/#search.
 """
 import os
 import requests as r
-from bs4 import BeautifulSoup 
+from bs4 import BeautifulSoup
 import re
 import time
 
@@ -23,7 +23,7 @@ def make_soup(xml):
 # Create directories
 if not os.path.isdir('data'):
     os.mkdir('data')
-    
+
 # Create output files
 with open('data-dictionary.tsv', 'w') as save_file:
     pass
@@ -46,17 +46,11 @@ for counter, each in enumerate(indices):
         print('.', end='', flush=True)
     data = r.get(each, headers=headers1)
     name = f'results-page-{counter + 1}'
-    with open(f'data/{name}', 'w') as new_file:
+    with open(f'data/{name}.xml', 'w') as new_file:
         print(data.text, file=new_file)
 print('Atom files downloaded.\n')
 
 
-
-
-
-# Create output file for data
-with open('data-dictionary.tsv', 'w') as save_file:
-    pass
 
 # Process test data
 with open('data/test.xml') as data_file:
