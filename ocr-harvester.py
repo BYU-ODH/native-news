@@ -41,7 +41,7 @@ with open('data-dictionary.tsv') as data_file:
             img_num = img_num.replace('seq-', '')  # remove seq- from each page number
             time.sleep(0.25)
             ocr_data = r.get(ocr_link, headers=headers1)
-            filename = f'{newspaper}_{date}_{img_num}.html'
+            filename = f'{newspaper}_{date}_p{img_num}.html'
             with open(f'ocr-data/{filename}', 'w') as new_file:
                 print(ocr_data.text, file=new_file)
         
