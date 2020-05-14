@@ -43,7 +43,7 @@ for counter, each in enumerate(indices):
     name = f'results-page-{counter + 1}'
     with open(f'atom-data/{name}.xml', 'w') as new_file:
         print(data.text, file=new_file)
-print('Atom files downloaded.\n')
+print(f'{counter} atom files downloaded.\n')
 print('Time elapsed: ', datetime.now() - startTime)
 
 
