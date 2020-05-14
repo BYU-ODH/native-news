@@ -47,8 +47,6 @@ print('Atom files downloaded.\n')
 print('Time elapsed: ', datetime.now() - startTime)
 
 
-
-
 """
 This is what I originally wrote to get both concepts down. I'm splitting it
 into multiple scripts. 
