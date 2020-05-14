@@ -2,24 +2,24 @@
 Repository for work related to Mike Taylor's native newspaper project.
 
 ## Order of operations
-1. Use `harvesting-chronicling.py` to harvest atom data from the _[Chronicling America](https://chroniclingamerica.loc.gov/)_ website for the dates we are interested in (1 Nov 1890 - 31 March 1891). 
+1. Use `atom-harvester.py` to harvest atom data from the _[Chronicling America](https://chroniclingamerica.loc.gov/)_ website for the dates we are interested in (1 Nov 1890 - 31 March 1891). 
 2. Use `atom-reader.py` to read each atom file and create a data dictionary.
 3. Use `ocr-harvester.py` to download the OCR of each newspaper page for the dates we are interested in.  
 
 ## Scripts
 
+### atom-harvester.py
+This script downloads 3838 atom files from the _Chronicling America_ website based on a search query that is formulated for the dates we are interested in. The atom files each contain 20 results, each of which is a single page of a newspaper within the timeframe. The atom files are saved as `xml` in the `atom-data` folder.
+
 ### atom-reader.py
 This script processes the atom files in the `atom-data` folder. It reads the entries in the atom file and outputs the results to `data-dictionary.tsv`.
-
-### harvesting-chronicling.py
-This script downloads 3838 atom files from the _Chronicling America_ website based on a search query that is formulated for the dates we are interested in. The atom files each contain 20 results, each of which is a single page of a newspaper within the timeframe. The atom files are saved as `xml` in the `atom-data` folder.
 
 ### ocr-harvester.py
 
 ## Folders
 
 ### atom-data
-This folder has the output of the `harvesting-chronicling.py` script. It is a collection of 3,838 atom/XML files.
+This folder has the output of the `atom-harvester.py` script. It is a collection of 3,838 atom/XML files.
 
 ## Files
 
