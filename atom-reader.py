@@ -47,7 +47,7 @@ for counter, each in enumerate(data):
             location = re.findall(r'\((.*?)\)', title_tag, flags=re.I)[0]  # https://regex101.com/r/e5WQw8/1
             newspaper = re.findall(r'(.*?)\.\s', title_tag, flags=re.I)[0]  # https://regex101.com/r/e5WQw8/2
             with open('data-dictionary.tsv', 'a') as save_file:
-                print(newspaper, date, img_num, link, ocr, sep='\t',
+                print(newspaper, location, date, img_num, link, ocr, sep='\t',
                       file=save_file)
 
 print('Time elapsed: ', datetime.now() - startTime)
