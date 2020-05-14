@@ -16,6 +16,10 @@ import requests as r
 from bs4 import BeautifulSoup
 import re
 import time
+from datetime import datetime
+
+
+startTime = datetime.now()
 
 
 def make_soup(xml):
@@ -52,7 +56,7 @@ for counter, each in enumerate(indices):
     with open(f'atom-data/{name}.xml', 'w') as new_file:
         print(data.text, file=new_file)
 print('Atom files downloaded.\n')
-
+print('Time elapsed: ', datetime.now() - startTime)
 
 # # Process test data
 # with open('data/test.xml') as data_file:
