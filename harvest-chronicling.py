@@ -50,6 +50,9 @@ print('Time elapsed: ', datetime.now() - startTime)
 
 
 """
+This is what I originally wrote to get both concepts down. I'm splitting it
+into multiple scripts. 
+
 test = 'https://chroniclingamerica.loc.gov/search/pages/results/?dateFilterType=range&date1=11%2F01%2F1890&date2=03%2F31%2F1891&format=atom&page1'  #noqa: E501
 
 # Download and save test data
