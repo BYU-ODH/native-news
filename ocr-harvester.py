@@ -18,21 +18,33 @@ from pprint import pprint
 
 startTime = datetime.now()
 
+# Declare identity
+headers1 = {'user-agent': 'Brian Croxall (brian.croxall@byu.edu)'}
+
 # Directories
 if not os.path.isdir('ocr-data'):
     os.mkdir('ocr-data')
 
+# Sets
 newspapers = set()
 
 with open('data-dictionary.tsv') as data_file:
     for counter, line in enumerate(data_file):
         if counter % 100 == 0:
             print('.', end='', flush=True)
-        # if counter > 4:
-        #     continue
-        # else:
-        newspaper, date, img_num, link, ocr_link = line.split('\t')
-        newspapers.add(newspaper)
+        if counter > 4:
+            continue
+        else:
+            newspaper, location, date, img_num, link, ocr_link = line.split('\t')
+            newspapers.add(newspaper)  # add newspaper title to set before I lower and kebab case it
+            newspaper = newspaper.lower().replace(' ', '-')
+            img_num = img_num('seq-', '')  # remove seq- from each page number
+            time.sleep(0.25)
+            ocr_data = r.get(ocr_link, headers=headers1)
+            filename = f'{newspaper}_{date}_{img_num}'
+            with open(f'ocr-data/{filename}', 'w') as new_file:
+                print(ocr_data.text, file=new_file)
+        
 
 with open('newspapers.txt', 'w') as file:
     pprint(newspapers, stream=file)
@@ -41,3 +53,4 @@ with open('newspapers.txt', 'w') as file:
 
 
 print('Time elapsed: ', datetime.now() - startTime)
+
