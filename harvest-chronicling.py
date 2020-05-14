@@ -21,8 +21,8 @@ def make_soup(xml):
 
 
 # Create directories
-if not os.path.isdir('data'):
-    os.mkdir('data')
+if not os.path.isdir('atom-data'):
+    os.mkdir('atom-data')
 
 # Create output files
 with open('data-dictionary.tsv', 'w') as save_file:
@@ -49,7 +49,6 @@ for counter, each in enumerate(indices):
     with open(f'data/{name}.xml', 'w') as new_file:
         print(data.text, file=new_file)
 print('Atom files downloaded.\n')
-
 
 
 # Process test data
