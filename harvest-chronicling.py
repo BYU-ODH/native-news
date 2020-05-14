@@ -13,19 +13,11 @@ dates that we are interested in and saves each of them in the atom-data folder.
 """
 import os
 import requests as r
-from bs4 import BeautifulSoup
-import re
 import time
 from datetime import datetime
 
 
 startTime = datetime.now()
-
-
-def make_soup(xml):
-    soup = BeautifulSoup(xml, 'lxml-xml')
-    return soup
-
 
 # Create directories
 if not os.path.isdir('atom-data'):
@@ -54,23 +46,7 @@ for counter, each in enumerate(indices):
 print('Atom files downloaded.\n')
 print('Time elapsed: ', datetime.now() - startTime)
 
-# # Process test data
-# with open('data/test.xml') as data_file:
-#     soup = make_soup(data_file)
-#     entries = []
-#     for each in soup.find_all('entry'):
-#         entries.append(each)
-#     for entry in entries:
-#         link = entry.find('link').get('href')
-#         ocr = link = 'ocr/'
-#         date = link.split('/')[5]
-#         img_num = link.split('/')[7]
-#         title_tag = entry.find('title').get_text()
-#         location = re.findall(r'\((.*?)\)', title_tag, flags=re.I)[0]  # https://regex101.com/r/e5WQw8/1
-#         newspaper = re.findall(r'(.*?)\.\s', title_tag, flags=re.I)[0]  # https://regex101.com/r/e5WQw8/2
-#         with open('data-dictionary.tsv', 'a') as save_file:
-#             print(newspaper, date, img_num, link, ocr, sep='\t',
-#                   file=save_file)
+
 
 
 """
