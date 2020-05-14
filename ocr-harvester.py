@@ -22,8 +22,8 @@ startTime = datetime.now()
 headers1 = {'user-agent': 'Brian Croxall (brian.croxall@byu.edu)'}
 
 # Directories
-if not os.path.isdir('ocr-data'):
-    os.mkdir('ocr-data')
+if not os.path.isdir('ocr-html'):
+    os.mkdir('ocr-html')
 
 # Sets
 newspapers = set()
@@ -42,7 +42,7 @@ with open('data-dictionary.tsv') as data_file:
         time.sleep(0.25)
         ocr_data = r.get(ocr_link, headers=headers1)
         filename = f'{newspaper}_{date}_p{img_num}.html'
-        with open(f'ocr-data/{filename}', 'w') as new_file:
+        with open(f'ocr-html/{filename}', 'w') as new_file:
             print(ocr_data.text, file=new_file)
         
 
