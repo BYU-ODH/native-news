@@ -41,6 +41,8 @@ with open('data-dictionary.tsv') as data_file:
     
 print()
 print('Results of comparing sets: ', expected.difference(downloaded))
+print('Number of expected files: ', len(expected))
+print('Number of downloaded files: ', len(downloaded))
 
 
 print('Number of duplicates from set creation:', duplicates)
