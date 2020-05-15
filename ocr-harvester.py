@@ -6,7 +6,7 @@ Created on Thu May 14 14:00:51 2020
 @author: briancroxall
 
 This script reads data-dictionary.tsv and uses its content to harvest OCR for
-each newspaper page in our data set and saves it to the XXX directory.
+each newspaper page in our data set and saves it to the ocr-txt directory.
 """
 
 import requests as r
