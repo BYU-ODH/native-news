@@ -40,7 +40,7 @@ for counter, each in enumerate(data):
             entries.append(each)
         for entry in entries:
             link = entry.find('link').get('href')
-            ocr = link + 'ocr/'
+            ocr = link + 'ocr.txt'
             date = link.split('/')[5]
             img_num = link.split('/')[7]
             title_tag = entry.find('title').get_text()
