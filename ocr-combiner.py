@@ -11,3 +11,35 @@ a single document.
 
 from glob import glob
 import os
+
+
+def get_filename(file):
+    no_dir = file.split('/')[-1]
+    no_ext = no_dir.split('.')[0]
+    return no_ext
+
+
+# Corpus
+corpus = sorted(glob('ocr-txt/*.txt'))
+test = ['/Users/briancroxall/Documents/github/native-news/ocr-txt/deseret-evening-news_1890-11-28_p1.txt',
+        '/Users/briancroxall/Documents/github/native-news/ocr-txt/deseret-evening-news_1890-11-28_p2.txt',
+        '/Users/briancroxall/Documents/github/native-news/ocr-txt/deseret-evening-news_1890-11-28_p3.txt',
+        '/Users/briancroxall/Documents/github/native-news/ocr-txt/deseret-evening-news_1890-11-28_p4.txt']
+
+# Directories
+if not os.path.isdir('combined-ocr'):
+    os.mkdir('combined-ocr')
+
+
+for each in test:
+    filename = get_filename(each)
+    newspaper, date, page = filename.split('_')
+    with open(each) as read_file:
+        text = read_file.read()
+        if page == 'p1':
+            with open(f'combined-ocr/{newspaper}_{date}.txt', 'w') as save_file:
+                print(text, file=save_file)
+        else:
+            with open(f'combined-ocr/{newspaper}_{date}.txt', 'a') as save_file:
+                print(text, file=save_file)
+
