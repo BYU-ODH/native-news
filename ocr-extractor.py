@@ -36,7 +36,7 @@ test = ['ocr-html/the-republican-journal_1890-12-04_p2.html',
         'ocr-html/st_1891-03-19_p8.html',
         'ocr-html/the-state-republican_1891-02-26_p3.html']
 
-for counter, each in enumerate(test):
+for counter, each in enumerate(corpus):
     if counter % 100 == 0:
         print('.', end='', flush=True)
     with open(each) as input_file:
