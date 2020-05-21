@@ -57,7 +57,9 @@ for each in corpus:
         newsdict[(newspaper, date)] = []
         
 print('Dictionary built')
+print('Expected number of newspaper issues: ', len(newsdict))
 
+print('\nStarting to combine texts')
 for (newspaper, date), pages in newsdict.items():
     for page in pages:
         with open(f'ocr-txt/{newspaper}_{date}_{page}.txt') as ocr:
@@ -68,7 +70,13 @@ for (newspaper, date), pages in newsdict.items():
         else:
             with open(f'combined-ocr/{newspaper}_{date}.txt', 'a') as save_file:
                 print(text, file=save_file)
-      
+                
+num_issues = len(glob('combined-ocr/*.txt'))
+print('\nTotal number of newspaper issues combined: ', num_issues)
+if len(newsdict) == num_issues:
+    print('Everything looks okay!')
+else: 
+    print('Brian, we have a problem!')
 print('\nTime elapsed: ', datetime.now() - startTime)    
 
 
