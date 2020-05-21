@@ -9,7 +9,7 @@ Repository for work related to Mike Taylor's native newspaper project.
 5. Use `ocr-extractor.py` to extract the OCR from the HTML pages. 
 6. Use `ocr-combiner.py` to combine the individual pages of a newspaper issue into a single `txt` file. 
 
-**N.B. At first, `atom-reader.py` got the link to the HTML page for the OCR. When I got to extracting the OCR with `ocr-extractor.py`, I realized that I could have downloaded the OCR directly without going through the HTML. For that reason, I rewrote `atom-reader.py` to produce a different link to the OCR. If I were to go through the whole process again, `ocr-extractor.py` would be unnecessary. That said, the data we have were actually created by extracting the OCR from the HTML. Sticking with this process saved us from having to re-harvest all 76k pages. **
+**N.B. At first, `atom-reader.py` got the link to the HTML page for the OCR. When I got to extracting the OCR with `ocr-extractor.py`, I realized that I could have downloaded the OCR directly without going through the HTML. For that reason, I rewrote `atom-reader.py` to produce a different link to the OCR. If I were to go through the whole process again, `ocr-extractor.py` would be unnecessary. That said, the data we have were actually created by extracting the OCR from the HTML. Sticking with this process saved us from having to re-harvest all 76k pages.**
 
 
 ## Scripts
