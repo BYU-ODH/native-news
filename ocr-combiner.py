@@ -11,6 +11,7 @@ a single document.
 
 from glob import glob
 import os
+from collections import defaultdict
 
 
 def get_filename(file):
@@ -25,12 +26,48 @@ test = ['/Users/briancroxall/Documents/github/native-news/ocr-txt/deseret-evenin
         '/Users/briancroxall/Documents/github/native-news/ocr-txt/deseret-evening-news_1890-11-28_p2.txt',
         '/Users/briancroxall/Documents/github/native-news/ocr-txt/deseret-evening-news_1890-11-28_p3.txt',
         '/Users/briancroxall/Documents/github/native-news/ocr-txt/deseret-evening-news_1890-11-28_p4.txt']
+test2 = ['/Users/briancroxall/Documents/github/native-news/ocr-txt/deseret-evening-news_1890-11-28_p1.txt',
+        '/Users/briancroxall/Documents/github/native-news/ocr-txt/deseret-evening-news_1890-11-28_p2.txt',
+        '/Users/briancroxall/Documents/github/native-news/ocr-txt/deseret-evening-news_1890-11-28_p3.txt',
+        '/Users/briancroxall/Documents/github/native-news/ocr-txt/deseret-evening-news_1890-11-28_p4.txt',
+        '/Users/briancroxall/Documents/github/native-news/ocr-txt/the-comet_1891-03-12_p1.txt',
+        '/Users/briancroxall/Documents/github/native-news/ocr-txt/the-comet_1891-03-12_p2.txt',
+        '/Users/briancroxall/Documents/github/native-news/ocr-txt/the-comet_1891-03-12_p3.txt',
+        '/Users/briancroxall/Documents/github/native-news/ocr-txt/the-comet_1891-03-12_p4.txt']
 
 # Directories
 if not os.path.isdir('combined-ocr'):
     os.mkdir('combined-ocr')
 
+# Dictionaries
+newsdict = defaultdict(list)
 
+
+# Build dictionary
+for each in test2:
+    filename = get_filename(each)
+    newspaper, date, page = filename.split('_')
+    try:
+        newsdict[(newspaper, date)].append(page)
+    except KeyError:
+        newsdict[(newspaper, date)] = []
+        
+print('Dictionary built')
+
+for (newspaper, date), pages in newsdict.items():
+    for page in pages:
+        with open(f'ocr-txt/{newspaper}_{date}_{page}.txt') as ocr:
+            text = ocr.read()
+        if page == 'p1':
+            with open(f'combined-ocr/{newspaper}_{date}.txt', 'w') as save_file:
+                print(text, file=save_file)
+        else:
+            with open(f'combined-ocr/{newspaper}_{date}.txt', 'a') as save_file:
+                print(text, file=save_file)
+        
+
+
+"""
 for each in test:
     filename = get_filename(each)
     newspaper, date, page = filename.split('_')
@@ -42,4 +79,4 @@ for each in test:
         else:
             with open(f'combined-ocr/{newspaper}_{date}.txt', 'a') as save_file:
                 print(text, file=save_file)
-
+"""
