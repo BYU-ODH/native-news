@@ -4,3 +4,4 @@ atom-data/
 ocr-html/
 ocr-txt/
 combined-ocr/
+*.zip
