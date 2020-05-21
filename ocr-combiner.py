@@ -12,6 +12,10 @@ a single document.
 from glob import glob
 import os
 from collections import defaultdict
+from datetime import datetime
+
+
+startTime = datetime.now()
 
 
 def get_filename(file):
@@ -44,7 +48,7 @@ newsdict = defaultdict(list)
 
 
 # Build dictionary
-for each in test2:
+for each in corpus:
     filename = get_filename(each)
     newspaper, date, page = filename.split('_')
     try:
@@ -64,7 +68,8 @@ for (newspaper, date), pages in newsdict.items():
         else:
             with open(f'combined-ocr/{newspaper}_{date}.txt', 'a') as save_file:
                 print(text, file=save_file)
-        
+      
+print('\nTime elapsed: ', datetime.now() - startTime)    
 
 
 """
