@@ -20,7 +20,7 @@ test = ['combined-ocr/abilene-weekly-reflector_1890-11-06.txt',
         'combined-ocr/alexandria-gazette_1891-02-18.txt']
 
 # Output file
-with open('search-wounded.tsv', 'w') as output:
+with open('search-results.tsv', 'w') as output:
     print('filename', 'newspaper', 'date',
           '# wk hits', 'wk strings', 
           '# hostile hits', 'hostile strings',
@@ -34,7 +34,7 @@ with open('search-wounded.tsv', 'w') as output:
           sep='\t', file=output)
 
 # Regex
-re_wk = r'(w[0o]und[@e3]d\skn[e@3][e@3])'
+re_wk = r'(w[0o]und[@e3]d\skn[e@3][e@3])'  # https://regex101.com/r/2DotPH/1
 re_hostile = r'(h[o0]st[i1|]le)'
 re_dakota = r'(d[a@]k[0o]t[a@])'
 re_tibbles = r'(t[1|i]bbles)'
@@ -74,7 +74,7 @@ for counter, each in enumerate(corpus):
     lf_results = re.findall(re_lf, text, flags=re.I)
     # if len(wk_results) >= 1:
     #     wk_counter += 1
-    with open('search-wounded.tsv', 'a') as save_file:
+    with open('search-results.tsv', 'a') as save_file:
         print(filename, newspaper, date,
               len(wk_results), wk_results,
               len(hostile_results), hostile_results,
