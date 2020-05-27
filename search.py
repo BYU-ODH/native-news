@@ -72,8 +72,24 @@ for counter, each in enumerate(corpus):
     bf_results = re.findall(re_bf, text, flags=re.I)
     be_results = re.findall(re_be, text, flags=re.I)
     lf_results = re.findall(re_lf, text, flags=re.I)
-    # if len(wk_results) >= 1:
-    #     wk_counter += 1
+    if len(wk_results) >= 1:
+        wk_counter += 1
+    if len(hostile_results) >= 1:
+        hostile_counter += 1
+    if len(dakota_results) >= 1:
+        dakota_counter += 1
+    if len(tibbles_results) >= 1:
+        tibbles_counter += 1
+    if len(sioux_results) >= 1:
+        sioux_counter += 1
+    if len(pr_results) >= 1:
+        pr_counter += 1
+    if len(bf_results) >= 1:
+        bf_counter += 1
+    if len(be_results) >= 1:
+        be_counter += 1
+    if len(lf_results) >= 1:
+        lf_counter += 1
     with open('search-results.tsv', 'a') as save_file:
         print(filename, newspaper, date,
               len(wk_results), wk_results,
@@ -86,5 +102,20 @@ for counter, each in enumerate(corpus):
               len(be_results), be_results,
               len(lf_results), lf_results,
               sep='\t', file=save_file)
+
+print('Number of results in wk_counter: ', wk_counter)
+print('Number of results in hostile_counter: ', hostile_counter)
+print('Number of results in dakota_counter: ', dakota_counter)
+print('Number of results in tibbles_counter: ', tibbles_counter)
+print('Number of results in sioux_counter: ', sioux_counter)
+print('Number of results in pr_counter: ', pr_counter)
+print('Number of results in bf_counter: ', bf_counter)
+print('Number of results in be_counter: ', be_counter)
+print('Number of results in lf_counter: ', lf_counter)
+
+
+for each in counters:
+    print(f'Number of results in {each}: ', each)
+
     
 print('\nTime elapsed: ', datetime.now() - startTime)    
