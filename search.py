@@ -112,6 +112,7 @@ with open('search-counters.txt', 'w') as new_file:
           '\nNumber of results in pr_counter: ', pr_counter,
           '\nNumber of results in bf_counter: ', bf_counter,
           '\nNumber of results in be_counter: ', be_counter,
-          '\nNumber of results in lf_counter: ', lf_counter)
+          '\nNumber of results in lf_counter: ', lf_counter,
+          file=new_file)
     
 print('\nTime elapsed: ', datetime.now() - startTime)    
