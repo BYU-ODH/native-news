@@ -103,19 +103,15 @@ for counter, each in enumerate(corpus):
               len(lf_results), lf_results,
               sep='\t', file=save_file)
 
-print('Number of results in wk_counter: ', wk_counter)
-print('Number of results in hostile_counter: ', hostile_counter)
-print('Number of results in dakota_counter: ', dakota_counter)
-print('Number of results in tibbles_counter: ', tibbles_counter)
-print('Number of results in sioux_counter: ', sioux_counter)
-print('Number of results in pr_counter: ', pr_counter)
-print('Number of results in bf_counter: ', bf_counter)
-print('Number of results in be_counter: ', be_counter)
-print('Number of results in lf_counter: ', lf_counter)
-
-
-for each in counters:
-    print(f'Number of results in {each}: ', each)
-
+with open('search-counters.txt', 'w') as new_file:
+    print('Number of results in wk_counter: ', wk_counter,
+          '\nNumber of results in hostile_counter: ', hostile_counter,
+          '\nNumber of results in dakota_counter: ', dakota_counter,
+          '\nNumber of results in tibbles_counter: ', tibbles_counter,
+          '\nNumber of results in sioux_counter: ', sioux_counter,
+          '\nNumber of results in pr_counter: ', pr_counter,
+          '\nNumber of results in bf_counter: ', bf_counter,
+          '\nNumber of results in be_counter: ', be_counter,
+          '\nNumber of results in lf_counter: ', lf_counter)
     
 print('\nTime elapsed: ', datetime.now() - startTime)    
