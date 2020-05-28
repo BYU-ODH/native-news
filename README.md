@@ -20,6 +20,9 @@ This script downloads 3838 atom files from the _Chronicling America_ website bas
 ### atom-reader.py
 This script processes the atom files in the `atom-data` folder. It reads the entries in the atom file and outputs the results to `data-dictionary.tsv`.
 
+### newspaper_tsv_prep.py
+This script takes the data from `newspapers.txt` and converts it into a `tsv` with columns for city and state for the newspapers. The output is `newspapers_locations.tsv`.
+
 ### ocr-checker.py
 This script creates two sets: one is the OCR HTML files that were expected to be downloaded from the information in `data-dictionary.tsv`; the other is the OCR HTML files that were _actually_ downloaded using `ocr-harvester.py`. 
 
@@ -64,6 +67,9 @@ This tsv is the output of `atom-reader.py`. For each entry in the atom data, it 
 - the direct link to _Chronicling America_ for that page
 - the link to the OCR for that page
 This file is used for step 3 in the order of operations.
+
+### newspaper_locations.tsv
+This is an output of `newspaper_tsv_prep.py` and is a list of all the newspapers in our targeted corpus as well as their city and states.
 
 ### newspapers.txt
 This is an output of `ocr-harvester.py`, and is a list of all the newspapers in our targeted corpus. 
