@@ -37,6 +37,9 @@ This script extracts the text of the OCR from the HTML that was downloaded with 
 ### ocr-harvester.py
 This script uses the information in `data-dictionary.tsv` to download `.txt` OCR files from the _Chronicling America_ website and save them in the `ocr-txt` folder. It also outputs a set of all newspapers in the data set, saving it to `newspapers.txt`.
 
+### search.py
+This script uses regex to search for key terms within the corpus contained in the `combined-ocr` folder. It saves the output (including number of hits and strings that hit) to `search-results.tsv`. It also saves the total counts for each term to `search-counters.txt`.
+
 ### url-grabber.py
 This script finds all the locations of the `tar` files for the Chronicling America website. It would be a first step if we wanted to bulk download all the data in the data set. It saves its output to `tarfiles.txt`. This was the first step I took in this project and I subsequently abandoned this line of work. An intermediary step is the creation of `chronicling-atom.txt`.
 
@@ -79,6 +82,12 @@ This is the output of `ocr-checker.py`. It shows which items appear more than on
 
 ### open-search-notes.md
 This markdown file contains preliminary notes that I created while trying to understand how to formulate a proper search query to use in `harvesting-chronicling.py`. In it, I also sketch out the different scripts that will be needed to accomplish the work that I need to do.
+
+### search-counters.txt
+This is an output of `search.py`. It is a list of total number of hits for the regex terms in `search.py`.
+
+### search-results.tsv
+This is an output of `search.py`. It is a list of all newspaper issues and the number of hits for each regex term in `search.py` and the strings that triggered those hits.
 
 ### tarfiles.txt
 This is an output of `url-grabber.py` and is a list of direct downloads for the `tar` files for each part of the Chronicling America data set. This could be used if we wanted to bulk download all of the data from the site.
