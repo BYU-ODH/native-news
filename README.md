@@ -2,6 +2,8 @@
 Repository for work related to Mike Taylor's native newspaper project.
 
 ## Order of operations
+
+### Data prep
 1. Use `atom-harvester.py` to harvest atom data from the _[Chronicling America](https://chroniclingamerica.loc.gov/)_ website for the dates we are interested in (1 Nov 1890 - 31 March 1891). 
 2. Use `atom-reader.py` to read each atom file and create a data dictionary.
 3. Use `ocr-harvester.py` to download the `.HTML` of the OCR data for each newspaper page for the dates we are interested in.  
@@ -10,6 +12,11 @@ Repository for work related to Mike Taylor's native newspaper project.
 6. Use `ocr-combiner.py` to combine the individual pages of a newspaper issue into a single `txt` file. 
 
 **N.B. At first, `atom-reader.py` got the link to the HTML page for the OCR. When I got to extracting the OCR with `ocr-extractor.py`, I realized that I could have downloaded the OCR directly without going through the HTML. For that reason, I rewrote `atom-reader.py` to produce a different link to the OCR. If I were to go through the whole process again, `ocr-extractor.py` would be unnecessary. That said, the data we have were actually created by extracting the OCR from the HTML. Sticking with this process saved us from having to re-harvest all 76k pages.**
+
+### Analysis
+1. Use `search.py` to find frequencies of key terms.
+2. Topic model the contents of the `combined-ocr` folder using MALLET. (Unfortunately, I don't seem to have kept a record of the command. I did 100 topics, stop words removed, 1000 iterations [default] and optimization set at, I believe, 100. I am also 95% certain that I set a seed of `1` so I could replicate the results.)
+3. Use `topic-analyzer.py` to isolate topic 70 from the topic model. 
 
 
 ## Scripts
@@ -40,6 +47,9 @@ This script uses the information in `data-dictionary.tsv` to download `.txt` OCR
 ### search.py
 This script uses regex to search for key terms within the corpus contained in the `combined-ocr` folder. It saves the output (including number of hits and strings that hit) to `search-results.tsv`. It also saves the total counts for each term to `search-counters.txt`.
 
+### topic-analyzer.py
+This script takes the results of the 100-topic topic model and isolates topic 70, which is the "Wounded Knee" topic. It sets the topic-composition of the document (a single newspaper issue) to 0 if the composition is below 0.01 (1%). It also rounds the topic composition to 4 decimal places. It saves this output to `tm_wk_results.tsv`. As a secondary action, it saves newspaper issues that are composed of 0.01 or higher in topic 70 to the `tm-subset` folder. 
+
 ### url-grabber.py
 This script finds all the locations of the `tar` files for the Chronicling America website. It would be a first step if we wanted to bulk download all the data in the data set. It saves its output to `tarfiles.txt`. This was the first step I took in this project and I subsequently abandoned this line of work. An intermediary step is the creation of `chronicling-atom.txt`.
 
@@ -56,6 +66,9 @@ This folder has the output of the `ocr-harvester.py` script. It is a collection 
 
 ### ocr-txt
 This folder has the output of the `ocr-extractor.py` script. It is a collection of 76k text files that were extracted from the data in the `ocr-html` folder. 
+
+### tm-subset
+This folder has the output of the `topic-analyzer.py` script. It is a collection of newspaper issues that are composed of 0.01 or higher of topic 70, the "Wounded Knee" topic. 
 
 ## Documents
 
@@ -91,4 +104,7 @@ This is an output of `search.py`. It is a list of all newspaper issues and the n
 
 ### tarfiles.txt
 This is an output of `url-grabber.py` and is a list of direct downloads for the `tar` files for each part of the Chronicling America data set. This could be used if we wanted to bulk download all of the data from the site.
+
+### tm_wk_results.tsv
+This is an output of `topic-analyzer.py` and is a tsv of the results of the topic model. It lists the newspaper, the date of the issue, and the percentage of that document composed of topic 70, which is the "Wounded Knee" topic. The percentage was rounded to 4 decimal points, and anything below 0.01 was set to 0.
 
