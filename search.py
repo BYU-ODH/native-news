@@ -31,6 +31,7 @@ with open('search-results.tsv', 'w') as output:
           '# bf hits', 'bf strings',
           '# be hits', 'be strings',
           '# lf hits', 'lf strings',
+          '# gd hits', 'gd strings',
           sep='\t', file=output)
 
 # Regex
@@ -39,10 +40,11 @@ re_hostile = r'(h[o0]st[i1|]le)'
 re_dakota = r'(d[a@]k[0o]t[a@])'
 re_tibbles = r'(t[1|i]bbles)'
 re_sioux = r'(s[1i|][o0]ux)'
-re_pr = r'(p[1i]ne\sr[i1]dge)'
+re_pr = r'(p[1i|]ne\sr[i1|]dge)'
 re_bf = r'(b[1i|]g\sf[o0][o0]t)'
 re_be = r'(br[1|i]ght\seyes)'
 re_lf = r'(l[a@]\sflesche)'
+re_gd = r'(gh[o0]s[\+t]\sd[@a]nc[e@3])'
 
 # Counters
 wk_counter = 0
@@ -54,6 +56,7 @@ pr_counter = 0
 bf_counter = 0
 be_counter = 0
 lf_counter = 0
+gd_counter = 0
 
 for counter, each in enumerate(corpus):
     if counter % 100 == 0:
@@ -72,6 +75,7 @@ for counter, each in enumerate(corpus):
     bf_results = re.findall(re_bf, text, flags=re.I)
     be_results = re.findall(re_be, text, flags=re.I)
     lf_results = re.findall(re_lf, text, flags=re.I)
+    gd_results = re.findall(re_gd, text, flags=re.I)
     if len(wk_results) >= 1:
         wk_counter += 1
     if len(hostile_results) >= 1:
@@ -90,6 +94,8 @@ for counter, each in enumerate(corpus):
         be_counter += 1
     if len(lf_results) >= 1:
         lf_counter += 1
+    if len(gd_results) >= 1:
+        gd_counter += 1
     with open('search-results.tsv', 'a') as save_file:
         print(filename, newspaper, date,
               len(wk_results), wk_results,
@@ -101,6 +107,7 @@ for counter, each in enumerate(corpus):
               len(bf_results), bf_results,
               len(be_results), be_results,
               len(lf_results), lf_results,
+              len(gd_results), gd_results,
               sep='\t', file=save_file)
 
 with open('search-counters.txt', 'w') as new_file:
@@ -113,6 +120,7 @@ with open('search-counters.txt', 'w') as new_file:
           '\nNumber of results in bf_counter: ', bf_counter,
           '\nNumber of results in be_counter: ', be_counter,
           '\nNumber of results in lf_counter: ', lf_counter,
+          '\nNumber of results in gd_counter: ', gd_counter,
           file=new_file)
     
 print('\nTime elapsed: ', datetime.now() - startTime)    
