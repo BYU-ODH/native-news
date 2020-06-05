@@ -6,4 +6,5 @@ Number of results in sioux_counter:  5389
 Number of results in pr_counter:  2490 
 Number of results in bf_counter:  900 
 Number of results in be_counter:  384 
-Number of results in lf_counter:  1
+Number of results in lf_counter:  1 
+Number of results in gd_counter:  1729
