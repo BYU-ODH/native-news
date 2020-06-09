@@ -45,7 +45,7 @@ for counter, each in enumerate(data):
             img_num = link.split('/')[7]
             title_tag = entry.find('title').get_text()
             location = re.findall(r'\((.*?)\)', title_tag, flags=re.I)[0]  # https://regex101.com/r/e5WQw8/1
-            newspaper = re.findall(r'(.*?)\.\s', title_tag, flags=re.I)[0]  # https://regex101.com/r/e5WQw8/2
+            newspaper = re.findall(r'(.*?)\s\[volume\]', title_tag, flags=re.I)  # https://regex101.com/r/e5WQw8/3
             with open('data-dictionary.tsv', 'a') as save_file:
                 print(newspaper, location, date, img_num, link, ocr, sep='\t',
                       file=save_file)
