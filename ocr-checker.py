@@ -12,7 +12,7 @@ from glob import glob
 
 # Corpus 
 expected = set()
-downloaded = set(glob('ocr-html/*.html'))
+downloaded = set(glob('ocr-txt/*.txt'))
 
 # File creation
 with open('ocr-checker.txt', 'w'):
@@ -28,16 +28,17 @@ with open('data-dictionary.tsv') as data_file:
         if counter % 100 == 0:
             print('.', end='', flush=True)
         newspaper, location, date, img_num, link, ocr_link = line.split('\t')
-        newspaper = newspaper.lower().replace(' ', '-')
+        newspaper = newspaper.lower().replace(' ', '-').replace('.','')
+        location = location.lower().replace(' ', '-')
         img_num = img_num.replace('seq-', '')  # remove seq- from each page number
-        filename = f'ocr-html/{newspaper}_{date}_p{img_num}.html'
+        filename = f'ocr-txt/{newspaper}_{location}_{date}_p{img_num}.txt'
         if filename in expected:
             duplicates += 1
             with open('ocr-checker.txt', 'a') as output:
                 print(filename, file=output)
         else:
             expected.add(filename)
-        expected.add(filename)
+        # expected.add(filename)
     
 print()
 print('Results of comparing sets: ', expected.difference(downloaded))
@@ -45,7 +46,8 @@ print('Number of expected files: ', len(expected))
 print('Number of downloaded files: ', len(downloaded))
 
 
-print('Number of duplicates from set creation:', duplicates)
+print('Number of duplicates in data-dictionary.tsv found during set creation:',
+      duplicates)
 
 with open('ocr-checker.txt') as file:
     for line in file:
