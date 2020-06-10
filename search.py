@@ -16,12 +16,12 @@ startTime = datetime.now()
 
 # Corpus
 corpus = sorted(glob('combined-ocr/*.txt'))
-test = ['combined-ocr/abilene-weekly-reflector_1890-11-06.txt',
-        'combined-ocr/alexandria-gazette_1891-02-18.txt']
+test = ['combined-ocr/asheville-daily-citizen_asheville,-n.c._1891-03-17.txt',
+        'combined-ocr/abilene-weekly-reflector_abilene,-kan._1890-12-04.txt']
 
 # Output file
 with open('search-results.tsv', 'w') as output:
-    print('filename', 'newspaper', 'date',
+    print('filename', 'newspaper', 'location', 'date',
           '# wk hits', 'wk strings', 
           '# hostile hits', 'hostile strings',
           '# dakota hits', 'dakota strings',
@@ -62,8 +62,9 @@ for counter, each in enumerate(corpus):
     if counter % 100 == 0:
         print('.', end='', flush=True)
     filename = each.split('/')[-1]
-    no_ext = filename.split('.')[0]
-    newspaper, date = no_ext.split('_')
+    no_ext = filename.split('.')[:-1]
+    joined = '.'.join(no_ext)
+    newspaper, location, date = joined.split('_')
     with open(each) as in_file:
         text = in_file.read()
     wk_results = re.findall(re_wk, text, flags=re.I)
@@ -97,7 +98,7 @@ for counter, each in enumerate(corpus):
     if len(gd_results) >= 1:
         gd_counter += 1
     with open('search-results.tsv', 'a') as save_file:
-        print(filename, newspaper, date,
+        print(filename, newspaper, location, date,
               len(wk_results), wk_results,
               len(hostile_results), hostile_results,
               len(dakota_results), dakota_results,
