@@ -4,6 +4,7 @@ atom-data/
 ocr-html/
 ocr-txt/
 combined-ocr/
+combined-ocr-copy/
 *.zip
 tm-subset/
 ocr-txt-orig/
