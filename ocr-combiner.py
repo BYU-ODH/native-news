@@ -26,18 +26,22 @@ def get_filename(file):
 
 # Corpus
 corpus = sorted(glob('ocr-txt/*.txt'))
-test = ['/Users/briancroxall/Documents/github/native-news/ocr-txt/deseret-evening-news_1890-11-28_p1.txt',
-        '/Users/briancroxall/Documents/github/native-news/ocr-txt/deseret-evening-news_1890-11-28_p2.txt',
-        '/Users/briancroxall/Documents/github/native-news/ocr-txt/deseret-evening-news_1890-11-28_p3.txt',
-        '/Users/briancroxall/Documents/github/native-news/ocr-txt/deseret-evening-news_1890-11-28_p4.txt']
-test2 = ['/Users/briancroxall/Documents/github/native-news/ocr-txt/deseret-evening-news_1890-11-28_p1.txt',
-        '/Users/briancroxall/Documents/github/native-news/ocr-txt/deseret-evening-news_1890-11-28_p2.txt',
-        '/Users/briancroxall/Documents/github/native-news/ocr-txt/deseret-evening-news_1890-11-28_p3.txt',
-        '/Users/briancroxall/Documents/github/native-news/ocr-txt/deseret-evening-news_1890-11-28_p4.txt',
-        '/Users/briancroxall/Documents/github/native-news/ocr-txt/the-comet_1891-03-12_p1.txt',
-        '/Users/briancroxall/Documents/github/native-news/ocr-txt/the-comet_1891-03-12_p2.txt',
-        '/Users/briancroxall/Documents/github/native-news/ocr-txt/the-comet_1891-03-12_p3.txt',
-        '/Users/briancroxall/Documents/github/native-news/ocr-txt/the-comet_1891-03-12_p4.txt']
+test = ['ocr-txt/the-newberry-herald-and-news_newberry,-s.c._1890-12-18_p1.txt',
+        'ocr-txt/the-newberry-herald-and-news_newberry,-s.c._1890-12-18_p2.txt',
+        'ocr-txt/the-newberry-herald-and-news_newberry,-s.c._1890-12-18_p3.txt',
+        'ocr-txt/the-newberry-herald-and-news_newberry,-s.c._1890-12-18_p4.txt']
+test2 = ['ocr-txt/the-morning-news_savannah,-ga._1891-02-25_p1.txt',
+         'ocr-txt/the-morning-news_savannah,-ga._1891-02-25_p2.txt',
+         'ocr-txt/the-morning-news_savannah,-ga._1891-02-25_p3.txt',
+         'ocr-txt/the-morning-news_savannah,-ga._1891-02-25_p4.txt',
+         'ocr-txt/the-morning-news_savannah,-ga._1891-02-25_p5.txt',
+         'ocr-txt/the-morning-news_savannah,-ga._1891-02-25_p6.txt',
+         'ocr-txt/the-morning-news_savannah,-ga._1891-02-25_p7.txt',
+         'ocr-txt/the-morning-news_savannah,-ga._1891-02-25_p8.txt',
+         'ocr-txt/the-newberry-herald-and-news_newberry,-s.c._1890-12-18_p1.txt',
+         'ocr-txt/the-newberry-herald-and-news_newberry,-s.c._1890-12-18_p2.txt',
+         'ocr-txt/the-newberry-herald-and-news_newberry,-s.c._1890-12-18_p3.txt',
+         'ocr-txt/the-newberry-herald-and-news_newberry,-s.c._1890-12-18_p4.txt']
 
 # Directories
 if not os.path.isdir('combined-ocr'):
@@ -48,9 +52,9 @@ newsdict = defaultdict(list)
 
 
 # Build dictionary
-for each in corpus:
+for each in test2:
     filename = get_filename(each)
-    newspaper, date, page = filename.split('_')
+    newspaper, location, date, page = filename.split('_')
     try:
         newsdict[(newspaper, date)].append(page)
     except KeyError:
