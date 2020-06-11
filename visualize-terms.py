@@ -9,7 +9,7 @@ Script to visualize search results from native news.
 """
 
 import os
-# from matplotlib import pyplot as plt
+from matplotlib import pyplot as plt
 from collections import defaultdict as dd
 
 
@@ -29,16 +29,16 @@ terms = ['wk', 'pr', 'gd']
 newspapers = set()
 
 # Dictionaries
-hits_dict = dd(dict)  # [date][term][count]
+hits_dict = dd(dict)  # [term][date][count]
 newspaper_dict = dd(dict)  # [newspaper][date][term][count]
 terms_dict = {'wk': 'Wounded Knee',
               'pr': 'Pine Ridge',
               'gd': 'ghost dance'}
 
 # Create dates in dict in the right order.
-for date in dates:
-    for term in terms:
-        hits_dict[date][term] = 0
+for term in terms:
+    for date in dates:
+        hits_dict[term][date] = 0
 
 
 with open('search-results.tsv') as file:
@@ -59,9 +59,10 @@ with open('search-results.tsv') as file:
             wk_hits = int(line.split('\t')[4])
             pr_hits = int(line.split('\t')[14])
             gd_hits = int(line.split('\t')[22])
-            hits_dict[week_date]['wk'] += wk_hits
-            hits_dict[week_date]['pr'] += pr_hits
-            hits_dict[week_date]['gd'] += gd_hits
+            hits_dict['wk'][week_date] += wk_hits
+            hits_dict['pr'][week_date] += pr_hits
+            hits_dict['gd'][week_date] += gd_hits
+
 
 """
             try:
