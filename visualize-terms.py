@@ -38,30 +38,29 @@ newspaper_dict = dd(dict)  # [newspaper][date][term][count]
 terms_dict = {'wk': 'Wounded Knee',
               'pr': 'Pine Ridge',
               'gd': 'ghost dance'}
-week_dict = {'1890-11-01': '1 Nov.', 
-             '1890-11-08': '8 Nov.',
-             '1890-11-15': '15 Nov.',
-             '1890-11-22': '22 Nov.',
-             '1890-11-29': '29 Nov.',
-             '1890-12-06': '6 Dec.',
-             '1890-12-13': '13 Dec.',
-             '1890-12-20': '20 Dec.',
-             '1890-12-27': '27 Dec.',
-             '1891-01-03': '3 Jan.',
-             '1891-01-10': '10 Jan.',
-             '1891-01-17': '17 Jan.',
-             '1891-01-24': '24 Jan.',
-             '1891-01-31': '31 Jan.',
-             '1891-02-07': '7 Feb.',
-             '1891-02-14': '14 Feb.',
-             '1891-02-21': '21 Feb.',
-             '1891-02-28': '28 Feb.',
-             '1891-03-07': '7 Mar.',
-             '1891-03-14': '14 Mar.',
-             '1891-03-21': '21 Mar.',
-             '1891-03-28': '28 Mar.'}
-
-y_dict = {'wk': 450,
+# week_dict = {'1890-11-01': '1 Nov.', 
+#              '1890-11-08': '8 Nov.',
+#              '1890-11-15': '15 Nov.',
+#              '1890-11-22': '22 Nov.',
+#              '1890-11-29': '29 Nov.',
+#              '1890-12-06': '6 Dec.',
+#              '1890-12-13': '13 Dec.',
+#              '1890-12-20': '20 Dec.',
+#              '1890-12-27': '27 Dec.',
+#              '1891-01-03': '3 Jan.',
+#              '1891-01-10': '10 Jan.',
+#              '1891-01-17': '17 Jan.',
+#              '1891-01-24': '24 Jan.',
+#              '1891-01-31': '31 Jan.',
+#              '1891-02-07': '7 Feb.',
+#              '1891-02-14': '14 Feb.',
+#              '1891-02-21': '21 Feb.',
+#              '1891-02-28': '28 Feb.',
+#              '1891-03-07': '7 Mar.',
+#              '1891-03-14': '14 Mar.',
+#              '1891-03-21': '21 Mar.',
+#              '1891-03-28': '28 Mar.'}
+y_dict = {'wk': 450,  # this dictionary helps plot the label on the orange line
           'pr': 700,
           'gd': 300}
 
@@ -70,7 +69,8 @@ for term in terms:
     for date in dates:
         hits_dict[term][date] = 0
     """
-    use this if I want to number weeks rather than have their full dates
+    use the following if I want to number weeks rather than have their full 
+    dates 
     for each in range(1,23):
         hits_dict[term][each] = 0
     """
@@ -102,7 +102,11 @@ for term in terms:
     term_counts = hits_dict[term].items()
     # for year, counts in term_counts:
     plt.figure(figsize=(22,12))  # set the size of the graph (width by height)
-    plt.plot(*zip(*term_counts), marker='o', markersize='15', linewidth=4)  # get the data from the dictionary; marker specifies round points, markersize adjust size of marker
+    """
+    # get the data from the dictionary; marker specifies round points,
+    markersize adjust size of marker
+    """
+    plt.plot(*zip(*term_counts), marker='o', markersize='15', linewidth=4)  
     ylim = plt.ylim()  # find the min and max of y on the graph
     vert_y = ylim  # use the min and max as a range for the vertical line
     vert_x = (8,8)  # place the vertical line where I want it. 0-indexed
