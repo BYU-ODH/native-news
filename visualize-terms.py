@@ -61,7 +61,7 @@ terms_dict = {'wk': 'Wounded Knee',
 #              '1891-03-21': '21 Mar.',
 #              '1891-03-28': '28 Mar.'}
 y_dict = {'wk': 450,  # this dictionary helps plot the label on the orange line
-          'pr': 700,
+          'pr': 650,
           'gd': 300}
 
 # Create dates in dict in the right order.
@@ -100,13 +100,13 @@ with open('search-results.tsv') as file:
 
 for term in terms:
     term_counts = hits_dict[term].items()
-    # for year, counts in term_counts:
     plt.figure(figsize=(22,12))  # set the size of the graph (width by height)
     """
     # get the data from the dictionary; marker specifies round points,
     markersize adjust size of marker
     """
-    plt.plot(*zip(*term_counts), marker='o', markersize='15', linewidth=4)  
+    dates, counts = zip(*term_counts)
+    plt.plot(dates, counts, marker='o', markersize='15', linewidth=4)  
     ylim = plt.ylim()  # find the min and max of y on the graph
     vert_y = ylim  # use the min and max as a range for the vertical line
     vert_x = (8,8)  # place the vertical line where I want it. 0-indexed
@@ -116,52 +116,23 @@ for term in terms:
     The list comprehension simply tells it to plot the right number of ticks
     and then it labels them based on the list
     """
-    plt.xticks(range(22), weeks, rotation=45)  
-    plt.xlabel('\nWeeks', fontweight='bold', fontsize=18)
-    plt.ylabel(f'Number of times \'{terms_dict[term]}\' appears per week\n', fontweight='bold', fontsize=18)
-    plt.suptitle(f'Total appearances of \'{terms_dict[term]}\' from 1 November 1890 - 31 March 1891', fontsize=24)
-    plt.title(f'in the {len(newspapers)} newspapers in the $\itChronicling$ $\itAmerica$ data set\n\n', fontsize=16)
-    plt.text(7.7, y_dict[term], 'Wound Knee Massacre', rotation=90, color='orange', fontsize='20')
+    plt.xticks(range(22), weeks, rotation=45, fontsize=14)
+    plt.yticks(fontsize=14)
+    plt.xlabel('\nWeek starting on', fontweight='bold', fontsize=18)
+    plt.ylabel(f'Number of times \'{terms_dict[term]}\' appears per week\n',
+               fontweight='bold', fontsize=18)
+    plt.suptitle(f'Weekly appearances of \'{terms_dict[term]}\' from 1 November 1890 - 31 March 1891', fontsize=24)
+    plt.title(f'in the {len(newspapers)} newspapers in the $\itChronicling$ $\itAmerica$ data set\n\n', fontsize=18)
+    plt.text(7.7, y_dict[term], 'Wound Knee Massacre, 29 Dec.', rotation=90, 
+             color='orange', fontsize=18, fontweight='bold')
+    for date, counts in term_counts:
+        label = '{:}'.format(counts)
+        plt.annotate(label,
+                      (date, counts),
+                      textcoords='offset points',
+                      xytext=(22,16),  # this adjusts the x,y of label placement
+                      ha='center',
+                      fontsize=18,
+                      fontweight='bold')
     plt.savefig(f'images/week_count_{term}.png')
     plt.clf()
-
-
-
-
-# import matplotlib.pyplot as plt
-# import numpy as np
-
-# plt.clf()
-
-# # using some dummy data for this example
-# xs = np.arange(0,10,1)
-# ys = np.random.normal(loc=3, scale=0.4, size=10)
-
-# # 'bo-' means blue color, round points, solid lines
-# plt.plot(xs,ys,'bo-')
-
-# # zip joins x and y coordinates in pairs
-# for x,y in zip(xs,ys):
-
-#     label = "{:.2f}".format(y)
-
-#     plt.annotate(label, # this is the text
-#                  (x,y), # this is the point to label
-#                  textcoords="offset points", # how to position the text
-#                  xytext=(0,10), # distance from text to points (x,y)
-#                  ha='center') # horizontal alignment can be left, right or center
-
-# plt.xticks(np.arange(0,10,1))
-# plt.yticks(np.arange(0,7,0.5))
-
-# plt.show()
-
-""" 
-            try:
-                newspaper_dict[newspaper][week_date]['wk'] = wk_hits
-            except KeyError:
-                newspaper_dict[newspaper] = week_date
-                newspaper_dict[newspaper][week_date]['wk'] = wk_hits
-"""
-            # hits_dict[newspaper][week_date]['pr'] = pr_hits
-            # hits_dict[newspaper][week_date]['gd'] = gd_hits
