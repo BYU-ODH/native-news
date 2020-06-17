@@ -60,7 +60,7 @@ terms_dict = {'wk': 'Wounded Knee',
 #              '1891-03-14': '14 Mar.',
 #              '1891-03-21': '21 Mar.',
 #              '1891-03-28': '28 Mar.'}
-y_dict = {'wk': 450,  # this dictionary helps plot the label on the orange line
+y_dict = {'wk': 400,  # this dictionary helps plot the label on the orange line
           'pr': 650,
           'gd': 300}
 
