@@ -60,8 +60,8 @@ terms_dict = {'wk': 'Wounded Knee',
 #              '1891-03-14': '14 Mar.',
 #              '1891-03-21': '21 Mar.',
 #              '1891-03-28': '28 Mar.'}
-y_dict = {'wk': 400,  # this dictionary helps plot the label on the orange line
-          'pr': 650,
+y_dict = {'wk': 375,  # this dictionary helps plot the label on the orange line
+          'pr': 550,
           'gd': 300}
 
 # Create dates in dict in the right order.
@@ -123,7 +123,7 @@ for term in terms:
                fontweight='bold', fontsize=18)
     plt.suptitle(f'Weekly appearances of \'{terms_dict[term]}\' from 1 November 1890 - 31 March 1891', fontsize=24)
     plt.title(f'in the {len(newspapers)} newspapers in the $\itChronicling$ $\itAmerica$ data set\n\n', fontsize=18)
-    plt.text(7.7, y_dict[term], 'Wound Knee Massacre, 29 Dec.', rotation=90, 
+    plt.text(7.7, y_dict[term], 'Wounded Knee Massacre, 29 Dec.', rotation=90, 
              color='orange', fontsize=18, fontweight='bold')
     for date, counts in term_counts:
         label = '{:}'.format(counts)
