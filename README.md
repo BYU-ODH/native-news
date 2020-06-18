@@ -17,6 +17,8 @@ Repository for work related to Mike Taylor's native newspaper project.
 1. Use `search.py` to find frequencies of key terms.
 2. Topic model the contents of the `combined-ocr` folder using MALLET. (Unfortunately, I don't seem to have kept a record of the command. I did 100 topics, stop words removed, 1000 iterations [default] and optimization set at, I believe, 100. I am also 95% certain that I set a seed of `1` so I could replicate the results.)
 3. Use `topic-analyzer.py` to isolate topic 70 from the topic model. 
+4. Use `visualize-terms.py` to create graphs of weekly appearances of 'ghost dance', 'pine ridge', or 'wounded knee'
+5. Use `find_2jan.py` to find all issues published on 1891-01-02 and copy them to a separate folder. 
 
 
 ## Scripts
@@ -27,13 +29,16 @@ This script downloads 3838 atom files from the _Chronicling America_ website bas
 ### atom-reader.py
 This script processes the atom files in the `atom-data` folder. It reads the entries in the atom file and outputs the results to `data-dictionary.tsv`.
 
+### find_2jan.py
+This script finds every newspaper issue in the `combined-ocr` folder that has a publication date of 1891-01-2 and copies that issue to the `2-jan-issues` folder.
+
 ### newspaper_tsv_prep.py
 This script takes the data from `newspapers.txt` and converts it into a `tsv` with columns for city and state for the newspapers. The output is `newspapers_locations.tsv`.
 
 ### ocr-checker.py
 This script creates two sets: one is the OCR HTML files that were expected to be downloaded from the information in `data-dictionary.tsv`; the other is the OCR HTML files that were _actually_ downloaded using `ocr-harvester.py`. 
 
-I created this script because `data-dictionary.tsv` was 76,748 lines long, but I only got 74,978 HTML files downloaded fro LOC. After a number of ways of checking (which resulted in this script), I verified that there were duplicate lines in `data-dictionary.tsv` and that the number of duplicates meant that the number of files I was actually expecting to download and the number that I _did_ download matched.
+I created this script because `data-dictionary.tsv` was 76,748 lines long, but I only got 74,978 HTML files downloaded from LOC. After a number of ways of checking (which resulted in this script), I verified that there were duplicate lines in `data-dictionary.tsv` and that the number of duplicates meant that the number of files I was actually expecting to download and the number that I _did_ download matched.
 
 ### ocr-combiner.py
 This script crawls the data in the `ocr-txt` folder and combines the individual pages of a newspaper issue into a single `txt` file. It outputs its results to the `combined-ocr` folder.
@@ -53,13 +58,22 @@ This script takes the results of the 100-topic topic model and isolates topic 70
 ### url-grabber.py
 This script finds all the locations of the `tar` files for the Chronicling America website. It would be a first step if we wanted to bulk download all the data in the data set. It saves its output to `tarfiles.txt`. This was the first step I took in this project and I subsequently abandoned this line of work. An intermediary step is the creation of `chronicling-atom.txt`.
 
+### visualize-terms.py
+This script takes the output of `search.py` and creates graphs for the weekly appearance of key terms in the corpus. It saves its output to the `images` folder.
+
 ## Folders
+
+### 2-jan-issues
+This folder has the output of the `find_2jan.py` script. It is a collection of all newspaper issues that were published on 1891-01-02. 
 
 ### atom-data
 This folder has the output of the `atom-harvester.py` script. It is a collection of 3,838 atom/XML files.
 
 ### combined-ocr
 This folder has the output of the `ocr-combiner.py` script. It is a collection of individual issues of newspaper issues. 
+
+### images
+This folder has the output of the `visualize-terms.py` script. It is a collection of maps of key terms over time. 
 
 ### ocr-html
 This folder has the output of the `ocr-harvester.py` script. It is a collection of 76k HTML files downloaded from the Chronicling America website. **N.B. If re-running the scripts, this folder would be unnecessary.**
