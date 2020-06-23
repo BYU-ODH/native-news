@@ -61,7 +61,7 @@ terms_dict = {'wk': 'Wounded Knee',
 #              '1891-03-21': '21 Mar.',
 #              '1891-03-28': '28 Mar.'}
 y_dict = {'wk': 375,  # this dictionary helps plot the label on the orange line
-          'pr': 550,
+          'pr': 565,
           'gd': 300}
 
 # Create dates in dict in the right order.
@@ -110,7 +110,7 @@ for term in terms:
     ylim = plt.ylim()  # find the min and max of y on the graph
     vert_y = ylim  # use the min and max as a range for the vertical line
     vert_x = (8,8)  # place the vertical line where I want it. 0-indexed
-    plt.plot(vert_x, vert_y, linestyle=':', linewidth=2, color='orange')  # draw the dashed, vertical line
+    plt.plot(vert_x, vert_y, linestyle=':', linewidth=2, color='red')  # draw the dashed, vertical line
     """
     # make the tick labels on the x axis rotate; could use "vertical" or an int
     The list comprehension simply tells it to plot the right number of ticks
@@ -122,15 +122,15 @@ for term in terms:
     plt.ylabel(f'Number of times \'{terms_dict[term]}\' appears per week\n',
                fontweight='bold', fontsize=18)
     plt.suptitle(f'Weekly appearances of \'{terms_dict[term]}\' from 1 November 1890 - 31 March 1891', fontsize=24)
-    plt.title(f'in the {len(newspapers)} newspapers in the $\itChronicling$ $\itAmerica$ data set\n\n', fontsize=18)
+    plt.title(f'in the {len(newspapers)} newspapers in the $\itChronicling$ $\itAmerica$ data set\n', fontsize=18)
     plt.text(7.7, y_dict[term], 'Wounded Knee Massacre, 29 Dec.', rotation=90, 
-             color='orange', fontsize=18, fontweight='bold')
+             color='red', fontsize=18, fontweight='bold')
     for date, counts in term_counts:
         label = '{:}'.format(counts)
         plt.annotate(label,
                       (date, counts),
                       textcoords='offset points',
-                      xytext=(22,16),  # this adjusts the x,y of label placement
+                      xytext=(21,16),  # this adjusts the x,y of label placement
                       ha='center',
                       fontsize=18,
                       fontweight='bold')
