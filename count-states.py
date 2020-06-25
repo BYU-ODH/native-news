@@ -19,8 +19,8 @@ with open('map_states.tsv') as data:
             continue
         state = line.split('\t')[3]
         states.add(state)
-        if state == '':
-            print(line)
+        # if state == '':
+        #     print(line)
         
 state_dict = {}
 
