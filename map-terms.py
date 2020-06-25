@@ -14,7 +14,7 @@ hits_dict = dd(dict)  #[newsloc][term][count]
 newsloc_set = set()
 
 with open('map.tsv', 'w') as savefile:
-    print('newsloc', 'newspaper', 'location', 'issues mentioning wk',
+    print('newsloc', 'newspaper', 'location', 'state', 'issues mentioning wk',
           'issues mentioning pr', 'issues mentioning gd', sep='\t',
           file=savefile)
 
@@ -68,5 +68,5 @@ for newsloc, results in hits_dict.items():
     pr_total = results['pr']
     gd_total = results['gd']
     with open('map.tsv', 'a') as output:
-        print(newsloc, newspaper, location, wk_total, pr_total, gd_total,
+        print(newsloc, newspaper, location, '', wk_total, pr_total, gd_total,
               sep='\t', file=output)
