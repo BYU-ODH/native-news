@@ -13,6 +13,11 @@ from collections import defaultdict as dd
 hits_dict = dd(dict)  #[newsloc][term][count]
 newsloc_set = set()
 
+with open('map.tsv', 'w') as savefile:
+    print('newsloc', 'newspaper', 'location', 'issues mentioning wk',
+          'issues mentioning pr', 'issues mentioning gd', sep='\t',
+          file=savefile)
+
 terms = ['wk', 'pr', 'gd']
 
 print('Building empty dictionary')
@@ -57,4 +62,11 @@ with open('search-results.tsv') as data:
             gd_hits = 1
             hits_dict[newsloc]['gd'] += gd_hits
 
-
+for newsloc, results in hits_dict.items():
+    newspaper, location = newsloc.split('_')
+    wk_total = results['wk']
+    pr_total = results['pr']
+    gd_total = results['gd']
+    with open('map.tsv', 'a') as output:
+        print(newsloc, newspaper, location, wk_total, pr_total, gd_total,
+              sep='\t', file=output)
