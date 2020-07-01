@@ -23,7 +23,7 @@ with open('map_states.tsv') as data:
         state_set.add(state)
 
 # build empty dictionary
-state_dict = dd(dict)  #[state][term][count]
+state_dict = dd(dict)  # [state][term][count]
 
 for state in state_set:
     for term in terms:
