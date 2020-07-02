@@ -43,7 +43,7 @@ with open('map_states.tsv') as data:
         state_dict[state]['gd'] += gd_mentions
 
 # create save file
-with open('map-state-totals.tsv', 'w') as savefile:
+with open('map-mentions-by-state.tsv', 'w') as savefile:
     print('state', 'issues mentioning wk', 'issues mentioning pr',
           'issues mentioning gd', sep='\t', file=savefile)
 
@@ -52,5 +52,5 @@ for state, results in state_dict.items():
     wk_total = results['wk']
     pr_total = results['pr']
     gd_total = results['gd']
-    with open('map-state-totals.tsv', 'a') as savefile:
+    with open('map-mentions-by-state.tsv', 'a') as savefile:
         print(state, wk_total, pr_total, gd_total, sep='\t', file=savefile)
