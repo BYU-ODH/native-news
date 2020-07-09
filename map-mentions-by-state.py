@@ -12,7 +12,7 @@ from collections import defaultdict as dd
 
 state_set = set()
 
-terms = ['wk', 'pr', 'gd']
+terms = ['wk', 'pr', 'gd', 'wk+pr+gd']
 
 # find all states in data set
 with open('map_states.tsv') as data:
@@ -38,19 +38,24 @@ with open('map_states.tsv') as data:
         wk_mentions = int(line.split('\t')[4])
         pr_mentions = int(line.split('\t')[5])
         gd_mentions = int(line.split('\t')[6])
+        wk_pr_gd = wk_mentions + pr_mentions + gd_mentions
         state_dict[state]['wk'] += wk_mentions
         state_dict[state]['pr'] += pr_mentions
         state_dict[state]['gd'] += gd_mentions
+        state_dict[state]['wk+pr+gd'] += wk_pr_gd
 
 # create save file
 with open('map-mentions-by-state.tsv', 'w') as savefile:
     print('state', 'issues mentioning wk', 'issues mentioning pr',
-          'issues mentioning gd', sep='\t', file=savefile)
+          'issues mentioning gd', 'issues mentioning wk+pr+gd', sep='\t',
+          file=savefile)
 
 # print results to save file
 for state, results in state_dict.items():
     wk_total = results['wk']
     pr_total = results['pr']
     gd_total = results['gd']
+    wk_pr_gd_total = results['wk+pr+gd']
     with open('map-mentions-by-state.tsv', 'a') as savefile:
-        print(state, wk_total, pr_total, gd_total, sep='\t', file=savefile)
+        print(state, wk_total, pr_total, gd_total, wk_pr_gd_total,
+              sep='\t', file=savefile)
