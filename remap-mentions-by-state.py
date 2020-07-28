@@ -39,7 +39,7 @@ with open('remap.tsv') as data:
 
 
 # create save file
-with open('re-map-mentions-by-state.tsv', 'w') as savefile:
+with open('remap-mentions-by-state.tsv', 'w') as savefile:
     print('state', 'issues mentioning wk OR pr OR gd', sep='\t', file=savefile)
 
 # print results to save file
