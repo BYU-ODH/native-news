@@ -121,8 +121,8 @@ for term in terms:
     plt.xlabel('\nWeek starting on', fontweight='bold', fontsize=18)
     plt.ylabel(f'Number of times \'{terms_dict[term]}\' appears per week\n',
                fontweight='bold', fontsize=18)
-    plt.suptitle(f'Weekly appearances of \'{terms_dict[term]}\' from 1 November 1890 - 31 March 1891', fontsize=24)
-    plt.title(f'in the {len(newspapers)} newspapers in the $\itChronicling$ $\itAmerica$ data set\n', fontsize=18)
+    # plt.suptitle(f'Weekly appearances of \'{terms_dict[term]}\' from 1 November 1890 - 31 March 1891', fontsize=24)
+    # plt.title(f'in the {len(newspapers)} newspapers in the $\itChronicling$ $\itAmerica$ data set\n', fontsize=18)
     plt.text(7.7, y_dict[term], 'Wounded Knee Massacre, 29 Dec.', rotation=90, 
              color='red', fontsize=18, fontweight='bold')
     for date, counts in term_counts:
