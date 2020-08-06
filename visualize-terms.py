@@ -92,11 +92,26 @@ with open('search-results.tsv') as file:
                     week_date = date1
                     # week_date = int(week_dict[week_date])  # use this if I want to number weeks rather than have their full dates
             wk_hits = int(line.split('\t')[4])
+            if wk_hits >= 1:
+                wk_yn = 1
+            else:
+                wk_yn = 0
             pr_hits = int(line.split('\t')[14])
+            if pr_hist >= 1:
+                pr_yn = 1
+            else:
+                pr_yn = 0
             gd_hits = int(line.split('\t')[22])
-            hits_dict['wk'][week_date] += wk_hits
-            hits_dict['pr'][week_date] += pr_hits
-            hits_dict['gd'][week_date] += gd_hits
+            if gd_hits >= 1:
+                gd_yn = 1
+            else:
+                gd_yn = 0
+            # hits_dict['wk'][week_date] += wk_hits
+            # hits_dict['pr'][week_date] += pr_hits
+            # hits_dict['gd'][week_date] += gd_hits
+            hits_dict['wk'][week_date] += wk_yn
+            hits_dict['pr'][week_date] += pr_yn
+            hits_dict['gd'][week_date] += gd_yn
 
 for term in terms:
     term_counts = hits_dict[term].items()
