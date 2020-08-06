@@ -24,10 +24,10 @@ dates = ['1890-11-01', '1890-11-08', '1890-11-15', '1890-11-22', '1890-11-29',
          '1891-02-14', '1891-02-21', '1891-02-28', '1891-03-07', '1891-03-14',
          '1891-03-21', '1891-03-28']
 terms = ['wk', 'pr', 'gd']
-weeks = ['1 Nov.', '8 Nov.', '15 Nov.', '22 Nov.', '29 Nov.', '6 Dec.',
-         '13 Dec.', '20 Dec.', '27 Dec.', '3 Jan.', '10 Jan.', '17 Jan.',
-         '24 Jan.', '31 Jan.', '7 Feb.', '14 Feb.', '21 Feb.', '28 Feb.',
-         '7 Mar.', '14 Mar.', '21 Mar.', '28 Mar.']
+weeks = ['Nov. 1', 'Nov. 8', 'Nov. 15', 'Nov. 22', 'Nov. 29', 'Dec. 6',
+         'Dec. 13', 'Dec. 20', 'Dec. 27', 'Jan. 3', 'Jan. 10', 'Jan. 17',
+         'Jan. 24', 'Jan. 31', 'Feb. 7', 'Feb. 14', 'Feb. 21', 'Feb. 28',
+         'Mar. 7', 'Mar. 14', 'Mar. 21', 'Mar. 28']
 
 # Sets
 newspapers = set()
@@ -60,8 +60,8 @@ terms_dict = {'wk': 'Wounded Knee',
 #              '1891-03-14': '14 Mar.',
 #              '1891-03-21': '21 Mar.',
 #              '1891-03-28': '28 Mar.'}
-y_dict = {'wk': 375,  # this dictionary helps plot the label on the orange line
-          'pr': 565,
+y_dict = {'wk': -10,  # this dictionary helps plot the label on the orange line
+          'pr': -10,
           'gd': 105}
 
 # Create dates in dict in the right order.
