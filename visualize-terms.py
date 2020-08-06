@@ -62,7 +62,7 @@ terms_dict = {'wk': 'Wounded Knee',
 #              '1891-03-28': '28 Mar.'}
 y_dict = {'wk': 375,  # this dictionary helps plot the label on the orange line
           'pr': 565,
-          'gd': 300}
+          'gd': 105}
 
 # Create dates in dict in the right order.
 for term in terms:
@@ -97,7 +97,7 @@ with open('search-results.tsv') as file:
             else:
                 wk_yn = 0
             pr_hits = int(line.split('\t')[14])
-            if pr_hist >= 1:
+            if pr_hits >= 1:
                 pr_yn = 1
             else:
                 pr_yn = 0
@@ -134,7 +134,7 @@ for term in terms:
     plt.xticks(range(22), weeks, rotation=45, fontsize=14)
     plt.yticks(fontsize=14)
     plt.xlabel('\nWeek starting on', fontweight='bold', fontsize=18)
-    plt.ylabel(f'Number of times \'{terms_dict[term]}\' appears per week\n',
+    plt.ylabel(f'Number of newspaper issues \'{terms_dict[term]}\' appears in per week\n',
                fontweight='bold', fontsize=18)
     # plt.suptitle(f'Weekly appearances of \'{terms_dict[term]}\' from 1 November 1890 - 31 March 1891', fontsize=24)
     # plt.title(f'in the {len(newspapers)} newspapers in the $\itChronicling$ $\itAmerica$ data set\n', fontsize=18)
