@@ -29,8 +29,11 @@ weeks = ['Nov. 1', 'Nov. 8', 'Nov. 15', 'Nov. 22', 'Nov. 29', 'Dec. 6',
          'Jan. 24', 'Jan. 31', 'Feb. 7', 'Feb. 14', 'Feb. 21', 'Feb. 28',
          'Mar. 7', 'Mar. 14', 'Mar. 21', 'Mar. 28']
 
+gd_count = 0
+
 # Sets
 newspapers = set()
+gd_newspapers = set()
 
 # Dictionaries
 hits_dict = dd(dict)  # [term][date][count]
@@ -104,8 +107,10 @@ with open('search-results.tsv') as file:
             gd_hits = int(line.split('\t')[22])
             if gd_hits >= 1:
                 gd_yn = 1
+                gd_newspapers.add(newspaper)
             else:
                 gd_yn = 0
+            gd_count += gd_yn
             # hits_dict['wk'][week_date] += wk_hits
             # hits_dict['pr'][week_date] += pr_hits
             # hits_dict['gd'][week_date] += gd_hits
