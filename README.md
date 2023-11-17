@@ -1,5 +1,5 @@
 # native-news
-Repository for work related to Mike Taylor's native newspaper project.
+Repository for work related to Mike Taylor and Rebecca Ballard's "Native Newspaper" project.
 
 ## Order of operations
 
