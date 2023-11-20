@@ -59,7 +59,7 @@ This script takes the results of the 100-topic topic model and isolates topic 70
 This script finds all the locations of the `tar` files for the Chronicling America website. It would be a first step if we wanted to bulk download all the data in the data set. It saves its output to `tarfiles.txt`. This was the first step I took in this project and I subsequently abandoned this line of work. An intermediary step is the creation of `chronicling-atom.txt`.
 
 ### visualize-terms.py
-This script takes the output of `search.py` and creates graphs for the weekly appearance of key terms in the corpus. It saves its output to the `images` folder.
+This script takes the output of `search.py` and creates graphs for the weekly appearance of key terms in the corpus. It saves its output to the `images` folder. This script also creates a `.tsv` of "ghost dance" mentions that we provided to _PMLA_ for the publication of the article.
 
 ## Folders
 
@@ -97,6 +97,9 @@ This tsv is the output of `atom-reader.py`. For each entry in the atom data, it 
 - the direct link to _Chronicling America_ for that page
 - the link to the OCR for that page
 This file is used for step 3 in the order of operations.
+
+### gd.tsv
+This tsv is one of the outputs of `visualize-terms.py`. It has the data that is used to produce the graph of "ghost dance" mentions so graphs can be made outside of Python.
 
 ### newspaper_locations.tsv
 This is an output of `newspaper_tsv_prep.py` and is a list of all the newspapers in our targeted corpus as well as their city and states.
