@@ -163,7 +163,7 @@ with open('gd.tsv', 'w') as savefile:
     print('Week starting on', 'Number of newspaper issues \'ghost dance\' appears in per week',
           sep='\t', file=savefile)
 
-for week, count in hits_dict['wk'].items():
+for week, count in hits_dict['gd'].items():
     with open('gd.tsv', 'a') as output:
         print(week, count, sep='\t', file=output)
 
